@@ -6,6 +6,8 @@ const BASE_URL = 'http://localhost:8000/api/v1/';
 class BaseService {
   static headers = new Headers({
     Authorization: 'Token b74ffede0fa251a2c446bdf7cfa35e40308139e4',
+    Accept: 'application/json',
+    'Content-Type': 'application/json;charset=utf-8',
   });
   static baseOptions: any = { headers: this.headers, mode: 'cors' };
 
@@ -41,11 +43,11 @@ class BaseService {
     });
   }
 
-  static post(endpoint: string, body: BodyInit) {
+  static post(endpoint: string, body: {}) {
     return BaseService.createRequest({
       endpoint,
       method: 'POST',
-      body,
+      body: JSON.stringify(body),
     });
   }
 }
